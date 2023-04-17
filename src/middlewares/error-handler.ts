@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { CustomError } from '../types';
-import logger from '../utils/logger';
+import logger from '../core/logger';
 
 export const ErrorHandler = (error: CustomError, req: Request, res: Response, next: NextFunction) => {
     if (error.code) {

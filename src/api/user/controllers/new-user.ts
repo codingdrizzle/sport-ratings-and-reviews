@@ -1,14 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import { CustomError, User } from "../../../types";
-import logger from "../../../utils/logger";
-import { hashPassword } from "../../../utils/password-actions";
-import { NewResourceCreated } from "../../../utils/responses";
+import logger from "../../../core/logger";
+import { hashPassword } from "../../../utilities/password-actions";
+import apiResponse from "../../../utilities/api-responses";
 import { createUser } from "../services/create-user";
 
 const createNewUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user: User = await createUser(req.body)
-        return NewResourceCreated(res, user)
+        return apiResponse.successResponseWithData(res, 'Account created successfully', user)
     } catch (error) {
         if (error instanceof Error) {
             logger.error(error.message);

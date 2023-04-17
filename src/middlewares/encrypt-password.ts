@@ -1,4 +1,4 @@
-import { hashPassword } from "../utils/password-actions";
+import { hashPassword } from "../utilities/password-actions";
 import { Request, Response, NextFunction } from "express";
 
 export const encryptPassword = async (req: Request, res: Response, next: NextFunction) => {

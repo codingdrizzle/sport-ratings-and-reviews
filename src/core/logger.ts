@@ -17,22 +17,6 @@ const warnOptions = {
         maxFiles: '21d',
     },
 };
-const debugOptions = {
-    file: {
-        levels: 'debug',
-        filename: "./logs" + '/%DATE%.log',
-        datePattern: 'YYYY-MM-DD',
-        zippedArchive: true,
-        timestamp: true,
-        handleExceptions: true,
-        humanReadableUnhandledException: true,
-        prettyPrint: true,
-        json: true,
-        maxSize: '20m',
-        colorize: true,
-        maxFiles: '21d',
-    },
-};
 const logger = createLogger({
     level: 'info',
     format: format.combine(
@@ -74,7 +58,8 @@ const logger = createLogger({
                 }),
                 format.printf(
                     (warn) =>
-                        `${warn.level}: ${warn.label}: ${[warn.timestamp]}: ${warn.message}`
+                        `${warn.level}: ${warn.label}: ${[warn.timestamp]}: ${warn.message
+                        }`
                 ), format.colorize({
                     all: true
                 }),
@@ -91,7 +76,8 @@ const logger = createLogger({
                 }),
                 format.printf(
                     (console) =>
-                        `${console.level}: ${console.label}: ${[console.timestamp]}: ${console.message}`
+                        `${console.level}: ${console.label}: ${[console.timestamp]}: ${console.message
+                        }`
                 ), format.colorize({
                     all: true
                 }),
