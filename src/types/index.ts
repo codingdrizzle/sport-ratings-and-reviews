@@ -1,4 +1,4 @@
-import { Document, Types } from 'mongoose';
+import mongoose,{ Document, Types } from 'mongoose';
 
 //Types
 export type CustomError = {
@@ -22,9 +22,8 @@ export interface Entity extends Document {
 
 export interface Review extends Document {
     _id: Types.ObjectId;
-    userId: Types.ObjectId | User;
-    entityType: EntityTypes;
-    entityId: Types.ObjectId;
+    userId: Types.ObjectId;
+    entityId: mongoose.Schema.Types.ObjectId;
     rating: number | null;
     comment: string | null;
 }
@@ -36,10 +35,4 @@ export enum UserRole {
     user = 'user',
 }
 
-export enum EntityTypes {
-    blogPost = 'blogPost',
-    facility = 'facility',
-    game = 'game',
-    player = 'player',
-    tournament = 'tournament',
-}
+export type EntityTypes ='blogPost' | 'facility' |'game' |'player' | 'tournament';

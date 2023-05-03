@@ -6,7 +6,7 @@ import hpp from 'hpp'
 import 'dotenv/config'
 
 import { ErrorHandler, InvalidUrl } from './middlewares/error-handler';
-import AppLogger from './core/eventLogger';
+import {AppLogger} from './core/eventLogger';
 const { router } = require('./routes')
 
 let logger = new AppLogger();

@@ -1,6 +1,6 @@
 import Logger from "./logger";
 
-export default class AppLogger {
+class AppLogger {
     logError = (scope: string, message: string) => {
         Logger.error(`[Scope: ${scope} (${getLocationOfLogCaller()})] ${message}`);
     };
@@ -24,3 +24,5 @@ function getLocationOfLogCaller() {
     callLocation = pathParts[pathParts.length - 1];
     return callLocation;
 }
+
+export {AppLogger};

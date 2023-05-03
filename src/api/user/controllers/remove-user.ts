@@ -1,14 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import { CustomError, User } from "../../../types";
 import logger from "../../../core/logger";
-import { hashPassword } from "../../../utilities/password-actions";
-import apiResponse from "../../../utilities/api-responses";
-import { createUser } from "../services/create-user";
+import ApiResponse from "../../../utilities/api-responses";
+import { deleteUser } from "../services";
 
-const createNewUser = async (req: Request, res: Response, next: NextFunction) => {
+const removeUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user: User = await createUser(req.body)
-        return apiResponse.successResponseWithData(res, 'Account created successfully', user)
+        const user: User | null = await deleteUser(req.body);
+        return ApiResponse.successResponse(res, 'User removed successfully');
     } catch (error) {
         if (error instanceof Error) {
             logger.error(error.message);
@@ -17,8 +16,7 @@ const createNewUser = async (req: Request, res: Response, next: NextFunction) =>
             const customError: CustomError = { code: 500, message: 'An unknown error occurred', };
             next(customError);
         }
-
     }
 }
 
-export { createNewUser }
+export { removeUser };

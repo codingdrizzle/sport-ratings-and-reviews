@@ -3,14 +3,14 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-"scripts": {
-    "dev": "nodemon",
-    "clean": "rimraf ./build",
-    "build": "npm run clean && tsc",
-    "start": "node ./build/api",
-    "local": "ts-node ./src/api",
-    "local:watch": "nodemon src -e ts,json --exec 'npm run local'"
-},
+    "scripts": {
+        "dev": "nodemon",
+        "clean": "rimraf ./build",
+        "build": "npm run clean && tsc",
+        "start": "node ./build/index",
+        "local": "ts-node ./src/index",
+        "local:watch": "nodemon src -e ts,json --exec 'npm run local'"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
