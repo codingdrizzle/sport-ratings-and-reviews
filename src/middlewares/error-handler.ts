@@ -2,23 +2,14 @@ import { Request, Response } from 'express';
 import { CustomError } from '../types';
 import logger from '../core/logger';
 
-export const ErrorHandler = (
-  error: CustomError,
-  req: Request,
-  res: Response,
-) => {
+export const ErrorHandler = (error: CustomError,_req: Request,res: Response) => {
   if (error.code) {
     logger.error(`code: ${error.code}, message: ${error.message}`);
-    return res.status(error.code).json({ error });
+    return res.status(error.code).json(error);
   }
   logger.error(`code: ${500}, message: ${error.message}`);
   return res.status(500).json({ error });
 };
-
-//export const ErrorLogger = (error: CustomError, req: Request, res: Response, next: NextFunction) => {
-
-//    return next(error)
-//}
 
 export const InvalidUrl = (req: Request, res: Response) => {
   const error: CustomError = {

@@ -6,12 +6,12 @@ const UserSchema: Schema = new Schema(
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    reviews: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Reviews',
-      },
-    ],
+    role: {
+        type: String,
+        enum: ["user", "admin"],
+        required: true,
+        default: 'user'
+    }
   },
   { timestamps: true }
 );

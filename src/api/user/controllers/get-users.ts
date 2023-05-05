@@ -9,9 +9,7 @@ const getUsers = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
     if (id) {
       const user: User | null = await findUser({ _id: id });
-      return await ApiResponse.successResponseWithData(res, 'Successful', {
-        ...user,
-      });
+      return await ApiResponse.successResponseWithData(res, 'Successful', user);
     } else {
       const users: User[] | [] = await findUsers();
       return users.length === 0

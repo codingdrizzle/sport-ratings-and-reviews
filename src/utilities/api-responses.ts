@@ -26,7 +26,7 @@ class ApiResponse {
         };
         return res.status(200).json(data);
     }
-    async successResponseWithData(res: Response, message: string, data: object) {
+    async successResponseWithData(res: Response, message: string, data: object | any) {
         const resData = {
             status: ResponseStatus.SUCCESS,
             client_message: message,
