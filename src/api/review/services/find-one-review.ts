@@ -1,8 +1,8 @@
 import { ReviewModel } from '../schema';
 
-const findReviewsForEntity = (reviewId: string, entityId: string) =>
-  ReviewModel.find({ _id: reviewId, entityId })
+const findReviewsUnique = (reviewId: string) =>
+  ReviewModel.find({ _id: reviewId })
     .populate({ path: 'reviewer', select: '-password -createdAt -updatedAt' })
     .populate({ path: 'entityId', select: '-createdAt -updatedAt' });
 
-export { findReviewsForEntity };
+export { findReviewsUnique };

@@ -19,77 +19,75 @@ enum ResponseStatus {
 }
 
 class ApiResponse {
-
     async successResponse(res: Response, msg: string) {
         const data = {
             status: ResponseStatus.SUCCESS,
             client_message: msg,
-        }
-        return res.status(200).json(data)
+        };
+        return res.status(200).json(data);
     }
-    async successResponseWithData(res: Response, message: string, data: Object) {
+    async successResponseWithData(res: Response, message: string, data: object) {
         const resData = {
             status: ResponseStatus.SUCCESS,
             client_message: message,
             data: data,
-        }
-        return res.status(ResponseStatus.SUCCESS).json(resData)
+        };
+        return res.status(ResponseStatus.SUCCESS).json(resData);
     }
 
-    async errorResponse(res: Response, serverMsg: String, clientMsg: string, statusCode = 500) {
+    async errorResponse(res: Response, serverMsg: string, clientMsg: string) {
         const data = {
             statusCode: StatusCode.FAILURE,
             message: {
                 serverMsg: serverMsg,
                 clientMsg: clientMsg,
             },
-        }
-        return res.status(ResponseStatus.INTERNAL_ERROR).json(data)
+        };
+        return res.status(ResponseStatus.INTERNAL_ERROR).json(data);
     }
 
     async notFoundResponse(res: Response, msg: string) {
         const data = {
             status: StatusCode.FAILURE,
             client_message: 'Not Found',
-            message: msg
-        }
-        return res.status(ResponseStatus.NOT_FOUND).json(data)
+            message: msg,
+        };
+        return res.status(ResponseStatus.NOT_FOUND).json(data);
     }
 
     async alreadyExistResponse(res: Response, msg: string) {
         const data = {
             status: StatusCode.FAILURE,
             client_message: 'Resource Conflict',
-            message: msg
-        }
-        return res.status(ResponseStatus.CONFLICT).json(data)
+            message: msg,
+        };
+        return res.status(ResponseStatus.CONFLICT).json(data);
     }
 
-    async validationErrorWithData(res: Response, msg: string, data: Object) {
+    async validationErrorWithData(res: Response, msg: string, data: object) {
         const resData = {
             status: StatusCode.INVALID_ACCESS_TOKEN,
             server_message: msg,
             data: data,
-        }
-        return res.status(ResponseStatus.BAD_REQUEST).json(resData)
+        };
+        return res.status(ResponseStatus.BAD_REQUEST).json(resData);
     }
 
     async validationErrorOnly(res: Response, msg: string) {
-        let resData = {
+        const resData = {
             status: StatusCode.FAILURE,
             error: msg,
-        }
-        return res.status(ResponseStatus.BAD_REQUEST).json(resData)
+        };
+        return res.status(ResponseStatus.BAD_REQUEST).json(resData);
     }
 
     async unauthorizedResponse(res: Response) {
         const resData = {
             statusCode: StatusCode.FAILURE,
             client_message: 'Unauthorized Access',
-        }
-        return res.status(ResponseStatus.UNAUTHORIZED).json(resData)
+        };
+        return res.status(ResponseStatus.UNAUTHORIZED).json(resData);
     }
-
 }
 
 export default new ApiResponse();

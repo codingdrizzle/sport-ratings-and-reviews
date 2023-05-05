@@ -1,13 +1,15 @@
 import mongoose, { Schema } from 'mongoose';
 import { Entity } from '../../../types';
 
-const EntitySchema: Schema<Entity> = new Schema({
+const EntitySchema: Schema<Entity> = new Schema(
+  {
     entity: {
-        type: String,
-        unique: true,
-        required: true
+      type: String,
+      unique: true,
+      required: true,
     },
-}, { timestamps: true }
+  },
+  { timestamps: true }
 );
 
 const EntityModel = mongoose.model<Entity>('Entities', EntitySchema);

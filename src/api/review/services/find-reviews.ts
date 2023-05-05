@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import { ReviewModel } from "../schema";
+import { ReviewModel } from '../schema';
 
-const findReviews = () => ReviewModel.find()
-.populate({ path: 'reviewer', select: '-password -createdAt -updatedAt' })
-.populate({ path: 'entityId', select: '-createdAt -updatedAt' });
+const findReviews = () =>
+  ReviewModel.find()
+    .populate({ path: 'reviewer', select: '-password -createdAt -updatedAt' })
+    .populate({ path: 'entityId', select: '-createdAt -updatedAt' });
 
 export { findReviews };

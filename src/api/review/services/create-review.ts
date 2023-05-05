@@ -1,6 +1,7 @@
-import { Review } from "../../../types";
-import { ReviewModel } from "../schema";
+import { Review } from '../../../types';
+import { ReviewModel } from '../schema';
 
-const createReview = (data: Review): Promise<Review> => ReviewModel.create(data);
+const createReview = (data: Review): Promise<Review> =>
+  ReviewModel.create(data);
 
-export { createReview }
+export { createReview };

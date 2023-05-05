@@ -1,5 +1,3 @@
-import {addEntity} from './add-entity';
+import { addEntity } from './add-entity';
 
-export {
-    addEntity
-}
+export { addEntity };

@@ -1,6 +1,5 @@
-import mongoose from "mongoose";
-import { ReviewModel } from "../schema";
+import { ReviewModel } from '../schema';
 
-const deleteReview = (id: mongoose.Schema.Types.ObjectId) => ReviewModel.findOneAndDelete({_id: id});
+const deleteReview = (id: string) => ReviewModel.findOneAndDelete({ _id: id });
 
-export { deleteReview }
+export { deleteReview };

@@ -1,14 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
 import ApiResponses from '../../../utilities/api-responses';
-import { findReviews } from '../services';
+import { findReviewsUnique } from '../services';
 
-const getReviews = async (req: Request, res: Response, next: NextFunction) => {
+const getReviewUnique = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
   try {
-    const reviews = await findReviews();
+    const reviews = await findReviewsUnique(id);
     return ApiResponses.successResponseWithData(res, 'Success', reviews);
   } catch (error) {
     return next(error);
   }
 };
 
-export { getReviews };
+export { getReviewUnique };
