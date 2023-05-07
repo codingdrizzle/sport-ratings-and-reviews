@@ -30,7 +30,7 @@ router.get('/', (res: Response) => {
   });
 });
 
-app.use(ErrorHandler);
 app.use(InvalidUrl);
+app.use(ErrorHandler);
 
 export default app;
