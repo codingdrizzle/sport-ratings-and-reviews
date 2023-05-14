@@ -9,10 +9,10 @@ const port = 3000;
 const server = http.createServer({}, app);
 
 server
-  .listen(port, () => {
-    connectDatabase();
-    logger.logInfo(scope, `Server started on port ${port}`);
-  })
-  .on('error', (e) => {
-    logger.logWarn(scope, e.toString());
-  });
+    .listen(port, () => {
+        connectDatabase();
+        logger.logInfo(scope, `Server started on port ${port}`);
+    })
+    .on('error', (e) => {
+        logger.logWarn(scope, e.toString());
+    });

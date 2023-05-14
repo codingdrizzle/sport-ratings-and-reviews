@@ -7,7 +7,7 @@ if (!secret) {
     throw new Error('JWT secret is not defined.');
 }
 
-const generateToken = (data: object) => jwt.sign({ ...data }, secret, { expiresIn: 7200 });
+const generateToken = (data: object) => jwt.sign({ ...data }, secret, { expiresIn: 43200 });
 
 const verifyToken = (token: string) => {
     return jwt.verify(token, secret, (error: any, results: any) => {
@@ -17,8 +17,9 @@ const verifyToken = (token: string) => {
 }
 
 const getUserIdFromToken = (tokenheader: string) => {
-    const bearer = tokenheader.split(' ')[1];
+    const bearer = tokenheader.split(' ')[1]
     return verifyToken(bearer);
 };
+
 
 export { getUserIdFromToken, generateToken, verifyToken };
