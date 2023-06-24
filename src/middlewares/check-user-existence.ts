@@ -16,6 +16,7 @@ declare global {
     }
 }
 
+
 export const checkUserExists = async (req: Request, res: Response, next: NextFunction) => {
     try {
         //if (!req.body.email) return ApiResponse.errorResponse(res, 'Could not query user. Filter key missing','User email or id not found')

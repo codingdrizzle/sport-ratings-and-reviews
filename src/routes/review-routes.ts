@@ -2,7 +2,6 @@ import { addReview, editReview, getReviewForEntity, getReviews, getReviewUnique 
 import { Router } from 'express';
 import { deleteReview } from '../api/review/services';
 import { generalAccess } from '../middlewares/access-permissions';
-import { getavgRntityRatingController } from '../api/ratings/get-avg-entity-rating.controller';
 
 export = (router: Router) => {
     // Adds a new review, created by a user to the DB (reviews collection)

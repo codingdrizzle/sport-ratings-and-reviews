@@ -5,7 +5,7 @@ import ApiResponse from '../../utilities/api-responses';
 import { getEntityAverageRating } from './entity-avg-rating';
 
 
-const getavgRntityRatingController = async (req: Request, res: Response, next: NextFunction) => {
+const getavgEntityRatingController = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const entityId: string = req.params.entityId;
         const avgRatings: number = await getEntityAverageRating(entityId);
@@ -24,4 +24,4 @@ const getavgRntityRatingController = async (req: Request, res: Response, next: N
     }
 };
 
-export { getavgRntityRatingController };
+export { getavgEntityRatingController };

@@ -15,14 +15,19 @@ export interface User extends Document {
     role: UserRole;
 }
 
+export interface EntityType extends Document {
+    _id: mongoose.Schema.Types.ObjectId;
+    entity_type: EntityTypes;
+}
 export interface Entity extends Document {
-    _id: Types.ObjectId;
-    entity: EntityTypes;
+    _id: mongoose.Schema.Types.ObjectId;
+    entity_type: mongoose.Schema.Types.ObjectId;
+    entity: mongoose.Schema.Types.ObjectId;
 }
 
 export interface Review extends Document {
-    _id: Types.ObjectId;
-    userId: Types.ObjectId;
+    _id: mongoose.Schema.Types.ObjectId;
+    userId: mongoose.Schema.Types.ObjectId;
     entityId: mongoose.Schema.Types.ObjectId;
     rating: number | null;
     comment: string | null;

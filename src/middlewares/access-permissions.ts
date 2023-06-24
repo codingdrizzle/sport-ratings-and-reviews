@@ -14,13 +14,6 @@ const adminAccess = async (req: Request, res: Response, next: NextFunction) => {
     return ['admin'].includes(checkUser.role) ? next() : next({ code: 401, msg: 'Unauthorised. Permission denied' });
 };
 
-
-type JWTExpired = {
-    code: number;
-    message: string;
-}
-
-
 const generalAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!req.headers['authorization']) return ApiResponse.errorResponse(res, 'No request authorization', 'Provided request authorization')

@@ -10,7 +10,6 @@ interface ValidationErrors {
 
 const addReview = async (req: Request, res: Response, next: NextFunction) => {
   const { userId, entityId } = req.params;
-    console.log(userId)
   try {
     const review = await createReview({
       reviewer: userId,
