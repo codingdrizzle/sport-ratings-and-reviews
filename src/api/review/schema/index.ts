@@ -8,9 +8,13 @@ const ReviewSchema: Schema = new Schema(
       ref: 'User',
       required: true,
     },
-    entityId: {
+    event: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
+    },
+    entity: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Entities',
+      ref: 'Entity',
       required: true,
     },
     rating: {
@@ -23,7 +27,7 @@ const ReviewSchema: Schema = new Schema(
       type: String,
       default: '',
       required: true,
-    },
+    }
   },
   { timestamps: true }
 );

@@ -1,4 +1,4 @@
-import mongoose, { Document, Types } from 'mongoose';
+import mongoose, { Document, Types, Schema } from 'mongoose';
 
 //Types
 export type CustomError = {
@@ -16,21 +16,32 @@ export interface User extends Document {
 }
 
 export interface EntityType extends Document {
-    _id: mongoose.Schema.Types.ObjectId;
-    entity_type: EntityTypes;
+    _id?: mongoose.Schema.Types.ObjectId;
+    entity_type: string;
 }
 export interface Entity extends Document {
-    _id: mongoose.Schema.Types.ObjectId;
-    entity_type: mongoose.Schema.Types.ObjectId;
-    entity: mongoose.Schema.Types.ObjectId;
+    _id?: Types.ObjectId;
+    entity_type: Types.ObjectId;
+    entity: Types.ObjectId;
 }
 
 export interface Review extends Document {
-    _id: mongoose.Schema.Types.ObjectId;
-    userId: mongoose.Schema.Types.ObjectId;
-    entityId: mongoose.Schema.Types.ObjectId;
+    _id: Types.ObjectId;
+    reviewer: Types.ObjectId;
+    entity: Types.ObjectId;
+    event: Types.ObjectId;
     rating: number | null;
     comment: string | null;
+}
+
+export interface Event extends Document{
+    _id: Types.ObjectId;
+    name: string;
+    sport: string;
+    event_date: Date;
+    event_venue: string;
+    participants: Types.ObjectId[];
+    reviews: Types.ObjectId[];
 }
 
 //Enumarators
@@ -39,9 +50,10 @@ export enum UserRole {
     user = 'user',
 }
 
-export type EntityTypes =
-    | 'blogPost'
-    | 'facility'
-    | 'game'
-    | 'player'
-    | 'tournament';
+//export enum EntityTypes {
+//    blogPost = 'blogPost',
+//    facility = 'facility',
+//    game = 'game',
+//    player = 'player',
+//    tournament = 'tournament'
+//}

@@ -15,7 +15,7 @@ const getType = async (req: Request, res: Response, next: NextFunction) => {
       return entities.length === 0
         ? await ApiResponse.successResponseWithData(
             res,
-            'No entities',
+            'No entities types',
             entities
           )
         : await ApiResponse.successResponseWithData(

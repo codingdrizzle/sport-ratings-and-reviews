@@ -1,66 +1,47 @@
 import mongoose, { Schema } from 'mongoose';
+import { ReviewModel } from '../../review/schema';
 
-const EventSchema: Schema = new Schema(
-    {
-        name: {
-            type: String,
-            required: true
-        },
-        sport: {
-            type: String,
-            required: true,
-        },
-        event_date: {
-            type: Date,
-            required: true
-        },
-        event_venue: {
-            type: String,
-            required: true
-        },
-        participants: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            required: true,
-        },
-        reviews: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Review',
-            required: true,
-        }]
+const EventSchema: Schema = new Schema({
+    name: {
+        type: String,
+        required: true
     },
+    sport: {
+        type: String,
+        required: true,
+    },
+    event_date: {
+        type: Date,
+        required: true
+    },
+    event_venue: {
+        type: String,
+        required: true
+    },
+    participants: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    }],
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review',
+        default: []
+    }]
+},
     { timestamps: true }
 );
 
-//// Virtual field for Entities
-//ReviewSchema.virtual('entities', {
-//    ref: 'Entities',
-//    localField: 'entityId',
-//    foreignField: '_id',
-//    justOne: true,
-//});
+EventSchema.pre(/^remove/, async function (next) {
+    try {
+        const filter = this.getFilter();
+        await ReviewModel.deleteMany({ event: filter._id });
+        next();
+    } catch (error: any) {
+        next(error);
+    }
+});
 
-//// Virtual field for Users
-//ReviewSchema.virtual('users', {
-//    ref: 'Users',
-//    localField: 'entityId',
-//    foreignField: '_id',
-//    justOne: true,
-//});
+const EventModel = mongoose.model<Event>('Event', EventSchema);
 
-//// Virtual field for Facilities
-//ReviewSchema.virtual('facilities', {
-//    ref: 'Facilities',
-//    localField: 'entityId',
-//    foreignField: '_id',
-//    justOne: true,
-//});
-
-//// Apply virtuals
-//ReviewSchema.set('toObject', { virtuals: true });
-//ReviewSchema.set('toJSON', { virtuals: true });
-
-// Create the Review model using the schema
-const ReviewModel = mongoose.model<Event>('Reviews', EventSchema);
-
-export { ReviewModel };
+export { EventModel };

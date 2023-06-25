@@ -5,26 +5,18 @@ import ApiResponse from '../../../utilities/api-responses';
 import { createType } from '../services';
 
 const addType = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-      const { entity_type } = req.body.entity_type
-      const entity: EntityType = await createType({...entity_type});
-    return ApiResponse.successResponseWithData(
-      res,
-      'Entity created successfully',
-      entity
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      logger.error(error.message);
-      next(error);
-    } else {
-      const customError: CustomError = {
-        code: 500,
-        message: 'An unknown error occurred',
-      };
-      next(customError);
+    try {
+        const entity_type = req?.body?.entity_type
+        const entity: EntityType = await createType(entity_type);
+        return ApiResponse.successResponseWithData(
+            res,
+            'Entity Type created successfully',
+            entity
+        );
+    } catch (error: any) {
+        logger.error(error);
+        return res.status(500).json({ message: error.message });
     }
-  }
 };
 
 export { addType };

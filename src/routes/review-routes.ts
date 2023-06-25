@@ -5,7 +5,7 @@ import { generalAccess } from '../middlewares/access-permissions';
 
 export = (router: Router) => {
     // Adds a new review, created by a user to the DB (reviews collection)
-    router.post('/review/:userId/:entityId', generalAccess, addReview);
+    router.post('/review/:reviewer', generalAccess, addReview);
 
     // Finds a specific review based on the review ID and entity ID
     router.get('/review/:reviewId/:entityId', generalAccess, getReviewForEntity);

@@ -8,8 +8,8 @@ const getReviewForEntity = async (
   next: NextFunction
 ) => {
   try {
-    const { reviewId, entityId } = req.params;
-    const entity_reviews = await findReviewsForEntity(reviewId, entityId);
+    const { reviewer, entity } = req.params;
+    const entity_reviews = await findReviewsForEntity(reviewer, entity);
     return ApiResponses.successResponseWithData(res, 'Success', entity_reviews);
   } catch (error) {
     return next(error);

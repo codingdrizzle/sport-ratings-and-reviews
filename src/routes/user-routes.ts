@@ -8,7 +8,7 @@ export = (router: Router) => {
     router.post('/users/new', checkUserExists, encryptPassword, addUser);
 
     // Checks the DB (users collection), Finds angetUsersd return a specific user based on the user's id
-    router.get('/users/:id', checkUserNotExists, getUsers);
+    router.get('/user/:id', getUsers);
 
     // Checks the DB (users collection), Finds and return all users
     router.get('/users', getUsers);

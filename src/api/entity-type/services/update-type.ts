@@ -4,8 +4,8 @@ import { EntityTypeModel } from '../schema';
 const updateType = (id: string, data: EntityType): Promise<EntityType | null> =>
   EntityTypeModel.findByIdAndUpdate(
     id,
-    { $set: { ...data } },
-    { runValidators: true, upsert: true }
+    { $set: { entity_type: data } },
+    { runValidators: true, new: true }
   );
 
 export { updateType };

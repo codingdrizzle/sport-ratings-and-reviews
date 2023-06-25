@@ -11,7 +11,7 @@ const getEntities = async (req: Request, res: Response, next: NextFunction) => {
       const entity: Entity | null = await findEntity(id);
       return await ApiResponse.successResponseWithData(res, 'Successful', entity);
     } else {
-      const entities: Entity[] | [] = await findEntities();
+      const entities: Entity[] = await findEntities();
       return entities.length === 0
         ? await ApiResponse.successResponseWithData(
             res,

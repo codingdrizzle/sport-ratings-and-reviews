@@ -35,7 +35,7 @@ export const checkUserNotExists = async (req: Request, res: Response, next: Next
     try {
         const user: User | null = await findUser({email: req.body.email});
         if (!user) return ApiResponse.notFoundResponse(res, 'User not found');
-
+        
         // Set user password for comparison when user is login in
         if (user && req.url.includes('/login')) {
             req.hashedpassword = user.password;

@@ -9,8 +9,8 @@ const removeType = async (
 ) => {
     try {
         const { id } = req.params;
-        const entity: any = await deleteType(id);
-        return ApiResponses.successResponseWithData(res, 'Successfully deleted entity.', entity);
+        const entityType: any = await deleteType(id);
+        return ApiResponses.successResponseWithData(res, 'Successfully deleted entity type', entityType);
     } catch (error) {
         return next(error);
     }

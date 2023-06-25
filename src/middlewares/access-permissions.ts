@@ -16,7 +16,7 @@ const adminAccess = async (req: Request, res: Response, next: NextFunction) => {
 
 const generalAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        if (!req.headers['authorization']) return ApiResponse.errorResponse(res, 'No request authorization', 'Provided request authorization')
+        if (!req.headers['authorization']) return ApiResponse.errorResponse(res, 'Unauthorized Request Headers', 'Provide request authorization')
         const userId = getUserIdFromToken(req.headers['authorization']);
         if (typeof (userId) !== 'string') return ApiResponse.errorResponse(res, 'Token expired', 'Token expired')
         const currentUser: User | null = await findUser({ _id: userId });
