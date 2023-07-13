@@ -12,7 +12,9 @@ const addUser = async (req: Request, res: Response, next: NextFunction) => {
       'Account created successfully',
       user
     );
-  } catch (error) {
+  } catch (error: any) {
+
+      if (error.code === 11000) return res.status(409).json({message: 'User already exists'})
     if (error instanceof Error) {
       logger.error(error.message);
       next(error);

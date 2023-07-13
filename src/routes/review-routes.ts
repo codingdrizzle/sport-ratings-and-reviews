@@ -8,7 +8,7 @@ export = (router: Router) => {
     router.post('/review/:reviewer', generalAccess, addReview);
 
     // Finds a specific review based on the review ID and entity ID
-    router.get('/review/:reviewId/:entityId', generalAccess, getReviewForEntity);
+    router.get('/review/:reviewer_id/:entity_id', generalAccess, getReviewForEntity);
 
     // Finds a specific review based on the review ID
     router.get('/review/:id', generalAccess, getReviewUnique);
