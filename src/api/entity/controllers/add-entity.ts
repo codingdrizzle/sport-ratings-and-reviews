@@ -6,13 +6,15 @@ import { createEntity } from '../services';
 
 const addEntity = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const new_entity: Entity = await createEntity(req.body);
+        const entity = <string>req.body.entity;
+        const new_entity = <Entity>await createEntity({entity});
         return ApiResponse.successResponseWithData(
             res,
             'Entity created successfully',
             new_entity
         );
-    } catch (error) {
+    } catch (error: any) {
+        if(error.code === 11000) return ApiResponse.errorResponse(res,'Duplicate key', 'Entity already exists');
         if (error instanceof Error) {
             logger.error(error.message);
             next(error);

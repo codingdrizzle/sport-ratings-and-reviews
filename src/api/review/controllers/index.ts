@@ -1,15 +1,16 @@
 import { addReview } from './add-review';
-import { getReviewForEntity } from './get-review-for-entity';
-import { getReviews } from './get-reviews';
-import { getReviewUnique } from './get-one-review';
+import { getReviews, getReviewUnique, getReviewForEvent, getReviewsForEventByEntity, getReviewsForEventByEntityReviewee } from './get-reviews';
 import { editReview } from './edit-review';
 import { removeReview } from './remove-review';
 
 export {
-  addReview,
-  getReviewForEntity,
-  getReviews,
-  getReviewUnique,
-  editReview,
-  removeReview,
+    addReview,
+    editReview,
+    removeReview,
+    getReviews,
+
+    getReviewUnique,
+    getReviewForEvent,
+    getReviewsForEventByEntity,
+    getReviewsForEventByEntityReviewee,
 };

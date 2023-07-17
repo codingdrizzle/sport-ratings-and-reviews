@@ -8,7 +8,7 @@ const editEntity = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = req.params.id;
         if (Object.keys(req.body).length === 0) return ApiResponse.errorResponse(res, 'Request body is required', 'Nothing to update');
-        const modifiedEntity: Entity | null = await updateEntity(id, req.body);
+        const modifiedEntity: Entity | null = await updateEntity(id, req.body.entity);
         return ApiResponse.successResponseWithData(
             res,
             'Entity modified successfully',

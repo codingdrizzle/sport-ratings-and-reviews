@@ -7,34 +7,30 @@ export type CustomError = {
 };
 
 //Interfaces
-export interface User extends Document {
-    _id: Types.ObjectId;
+export interface User  {
+    _id?: Types.ObjectId;
     username: string;
     email: string;
     password: string;
-    role: UserRole;
+    role: string;
 }
 
-export interface EntityType extends Document {
-    _id?: mongoose.Schema.Types.ObjectId;
-    entity_type: string;
-}
-export interface Entity extends Document {
+export interface Entity {
     _id?: Types.ObjectId;
-    entity_type: Types.ObjectId;
-    entity: Types.ObjectId;
+    entity: string;
 }
 
-export interface Review extends Document {
-    _id: Types.ObjectId;
-    reviewer: Types.ObjectId;
-    entity: Types.ObjectId;
-    event: Types.ObjectId;
+export interface Review  {
+    _id?: Types.ObjectId;
+    eventId: Types.ObjectId;
+    entityId: Types.ObjectId;
+    revieweeId: Types.ObjectId;
+    reviewerId: Types.ObjectId;
     rating: number | null;
     comment: string | null;
 }
 
-export interface Event extends Document{
+export interface Event {
     _id: Types.ObjectId;
     name: string;
     sport: string;
@@ -44,11 +40,7 @@ export interface Event extends Document{
     reviews: Types.ObjectId[];
 }
 
-//Enumarators
-export enum UserRole {
-    admin = 'admin',
-    user = 'user',
-}
+
 
 //export enum EntityTypes {
 //    blogPost = 'blogPost',

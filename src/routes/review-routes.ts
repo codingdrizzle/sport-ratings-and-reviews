@@ -1,24 +1,29 @@
-import { addReview, editReview, getReviewForEntity, getReviews, getReviewUnique } from '../api/review/controllers';
+import { addReview, editReview, getReviewForEvent, getReviewsForEventByEntity, getReviewsForEventByEntityReviewee,removeReview, getReviews, getReviewUnique } from '../api/review/controllers';
 import { Router } from 'express';
-import { deleteReview } from '../api/review/services';
 import { generalAccess } from '../middlewares/access-permissions';
 
 export = (router: Router) => {
     // Adds a new review, created by a user to the DB (reviews collection)
-    router.post('/review/:reviewer', generalAccess, addReview);
-
-    // Finds a specific review based on the review ID and entity ID
-    router.get('/review/:reviewer_id/:entity_id', generalAccess, getReviewForEntity);
-
-    // Finds a specific review based on the review ID
-    router.get('/review/:id', generalAccess, getReviewUnique);
+    router.post('/review/:reviewerId', generalAccess, addReview);
 
     // Finds all reviews
     router.get('/reviews', generalAccess, getReviews);
+    
+    // Finds a specific review based on the review ID
+    router.get('/review/:id', generalAccess, getReviewUnique);
+    
+    // Finds a specific review for a particular Event
+    router.get('/review/:eventId', generalAccess, getReviewForEvent);
+    
+    // Finds a specific review for a particular Event based on entity 
+    router.get('/reviews/:eventId/:entityId', generalAccess, getReviewsForEventByEntity);
+    
+    // Finds a specific review for a particular Event based on entity for a Reviewwee
+    router.get('/reviews/:eventId/:entityId/:revieweeId', generalAccess, getReviewsForEventByEntityReviewee);
 
     // Finds a specific review based on review ID and update the details of the review
     router.put('/review/:id', generalAccess, editReview);
 
     // Finds a specific review and delete or remove from the DB
-    router.delete('/review/:id', generalAccess, deleteReview);
+    router.delete('/review/:id', generalAccess, removeReview);
 };

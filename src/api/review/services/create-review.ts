@@ -2,6 +2,6 @@ import { Review } from '../../../types';
 import { ReviewModel } from '../schema';
 
 const createReview = (data: Review): Promise<Review> =>
-    ReviewModel.create({ ...data });
+    ReviewModel.create(data);
 
 export { createReview };

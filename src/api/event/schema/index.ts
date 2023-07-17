@@ -23,11 +23,11 @@ const EventSchema: Schema = new Schema({
         ref: 'User',
         required: true,
     }],
-    reviews: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Review',
-        default: []
-    }]
+    //facility: {
+    //    type: mongoose.Schema.Types.ObjectId,
+    //    ref: 'Facility',
+    //    required: true,
+    //}
 },
     { timestamps: true }
 );

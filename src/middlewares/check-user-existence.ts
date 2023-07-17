@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import { findUser } from '../api/user/services';
 import { User } from '../types';
 import ApiResponse from '../utilities/api-responses';
@@ -39,7 +39,7 @@ export const checkUserNotExists = async (req: Request, res: Response, next: Next
         // Set user password for comparison when user is login in
         if (user && req.url.includes('/login')) {
             req.hashedpassword = user.password;
-            req.id = user._id;
+            req.id = new Types.ObjectId(user._id);
             req.isValidEmail = true;
             return next();
         }
