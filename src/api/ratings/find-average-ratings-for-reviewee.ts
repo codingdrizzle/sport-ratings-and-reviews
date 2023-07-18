@@ -30,7 +30,7 @@ const findAverageRatingForReviewee = async (eventId: Types.ObjectId, entityId: T
     ]);
 
     if (averageRating.length > 0) {
-        return parseFloat(averageRating[0].averageRating.toFixed(1));
+        return parseFloat(averageRating[0].averageRating.toFixed(2));
     }
 
     return null;

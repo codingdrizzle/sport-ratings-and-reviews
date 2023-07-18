@@ -12,8 +12,8 @@ export = (router: Router) => {
     // Finds a specific review based on the review ID
     router.get('/review/:id', generalAccess, getReviewUnique);
     
-    // Finds a specific review for a particular Event
-    router.get('/review/:eventId', generalAccess, getReviewForEvent);
+    // Finds a reviews for a particular Event
+    router.get('/review/:eventId',   generalAccess, getReviewForEvent);
     
     // Finds a specific review for a particular Event based on entity 
     router.get('/reviews/:eventId/:entityId', generalAccess, getReviewsForEventByEntity);

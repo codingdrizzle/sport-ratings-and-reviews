@@ -29,6 +29,7 @@ const getReviewForEvent = async (req: Request, res: Response, next: NextFunction
     try {
         const { eventId } = req.params;
         const event_reviews = await findReviewsForEvent(new ObjectId(eventId));
+        console.log(event_reviews);
         return ApiResponses.successResponseWithData(res, 'Success', event_reviews);
     } catch (error) {
         return next(error);
